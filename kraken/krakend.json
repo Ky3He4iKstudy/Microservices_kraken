@@ -1,0 +1,53 @@
+{
+  "$schema": "https://www.krakend.io/schema/v3.json",
+  "version": 3,
+  "endpoints": [
+    {
+      "endpoint": "/get/all",
+      "method": "GET",
+      "backend": [
+        {
+          "url_pattern": "/get_data",
+          "method": "GET",
+          "host": [
+            "http://server1:8080"
+          ]
+        },
+        {
+          "url_pattern": "/get_data",
+          "method": "GET",
+          "host": [
+            "http://server2:8080"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/get/s1",
+      "method": "GET",
+      "backend": [
+        {
+          "url_pattern": "/get_data",
+          "method": "GET",
+          "host": [
+            "http://server1:8080"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/get/s2",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/get_data",
+          "method": "GET",
+          "host": [
+            "http://server2:8080"
+          ]
+        }
+      ]
+    }
+  ]
+}
