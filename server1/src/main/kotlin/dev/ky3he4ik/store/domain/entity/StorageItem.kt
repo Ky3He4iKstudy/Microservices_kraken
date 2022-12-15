@@ -4,7 +4,14 @@ import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Id
 import javax.persistence.Table
-
+/*
+curl --location --request POST 'http://localhost:8079/auth/myrealm/protocol/openid-connect/token' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'password=123' \
+--data-urlencode 'username=client' \
+--data-urlencode 'client_id=client' \
+--data-urlencode 'grant_type=password'
+* */
 @Entity
 @Table
 data class StorageItem(
