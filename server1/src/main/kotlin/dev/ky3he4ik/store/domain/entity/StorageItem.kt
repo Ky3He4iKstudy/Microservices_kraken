@@ -1,4 +1,4 @@
-package dev.ky3he4ik.micro_9_1
+package dev.ky3he4ik.store.domain.entity
 
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -9,10 +9,10 @@ import javax.persistence.Table
 @Table
 data class StorageItem(
     @Id
-    @Column(name="item_key")
+    @Column(name = "item_key")
     val key: Int = 0,
 
-    @Column(name="item_value")
+    @Column(name = "item_value")
     val value: String = ""
 ) {
     override fun hashCode(): Int = javaClass.hashCode()
