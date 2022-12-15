@@ -6,4 +6,4 @@ import dev.ky3he4ik.store.domain.entity.StorageItem
 import dev.ky3he4ik.store.infrastructure.repository.StorageRepo
 
 @Service
-class UserService(repo: StorageRepo) : BaseService<StorageItem, Int>(repo)
+class StorageService(repo: StorageRepo) : BaseService<StorageItem, Int>(repo)
