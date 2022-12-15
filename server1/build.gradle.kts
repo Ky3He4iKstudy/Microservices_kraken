@@ -15,6 +15,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-rest")
     runtimeOnly("org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0-RC")
     runtimeOnly("org.postgresql:postgresql")
+    runtimeOnly("com.h2database:h2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 tasks.withType<Jar> {

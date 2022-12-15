@@ -9,5 +9,4 @@ EXPOSE 8080
 RUN mkdir /app
 COPY --from=build /app/server1/build/libs/*.jar app.jar
 
-COPY . ./build1
 CMD ["java", "-jar", "app.jar"]

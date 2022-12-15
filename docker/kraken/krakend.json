@@ -1,0 +1,169 @@
+{
+  "$schema": "https://www.krakend.io/schema/v3.json",
+  "version": 3,
+  "endpoints": [
+    {
+      "endpoint": "/info/",
+      "method": "GET",
+      "backend": [
+        {
+          "url_pattern": "/",
+          "method": "GET",
+          "host": [
+            "http://server2:8080"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/info/api",
+      "method": "GET",
+      "backend": [
+        {
+          "url_pattern": "/api",
+          "method": "GET",
+          "host": [
+            "http://server2:8080"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/info/health",
+      "method": "GET",
+      "backend": [
+        {
+          "url_pattern": "/health",
+          "method": "GET",
+          "host": [
+            "http://server2:8080"
+          ]
+        }
+      ]
+    },
+
+    {
+      "endpoint": "/store/get_data",
+      "method": "GET",
+      "backend": [
+        {
+          "url_pattern": "/get_data",
+          "method": "GET",
+          "host": [
+            "http://server1:8080"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/store/get/{key}",
+      "method": "GET",
+      "backend": [
+        {
+          "url_pattern": "/get/{key}",
+          "method": "GET",
+          "host": [
+            "http://server1:8080"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/store/set",
+      "method": "POST",
+      "backend": [
+        {
+          "url_pattern": "/store/set",
+          "method": "POST",
+          "host": [
+            "http://server1:8080"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/store/remove",
+      "method": "POST",
+      "output_encoding": "string",
+      "backend": [
+        {
+          "url_pattern": "/store/remove",
+          "method": "POST",
+          "encoding": "string",
+          "host": [
+            "http://server1:8080"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/common/health",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/health",
+          "method": "GET",
+          "host": [
+            "http://server1:8080"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_details": "backend_alias"
+            }
+          }
+        },
+        {
+          "url_pattern": "/health",
+          "method": "GET",
+          "host": [
+            "http://server2:8080"
+          ],
+          "extra_config": {
+            "backend/http": {
+              "return_error_details": "backend_alias"
+            }
+          }
+        }
+      ]
+    }
+  ],
+
+
+  "sequential_start": true,
+  "extra_config": {
+    "telemetry/opencensus": {
+      "sample_rate": 100,
+      "reporting_period": 0,
+      "enabled_layers": {
+        "backend": true,
+        "router": true
+      },
+      "exporters": {
+        "jaeger": {
+          "endpoint": "http://jaeger:14268/api/traces",
+          "service_name": "krakend"
+        },
+        "prometheus": {
+          "port": 9091,
+          "namespace": "krakend",
+          "tag_host": false,
+          "tag_path": true,
+          "tag_method": true,
+          "tag_statuscode": false
+        }
+      }
+    },
+    "telemetry/influx": {
+      "address": "http://influxdb:8086",
+      "ttl": "25s",
+      "buffer_size": 100,
+      "username": "krakend",
+      "password": "krakend"
+    },
+    "telemetry/metrics": {
+      "collection_time": "15s",
+      "listen_address": ":8090"
+    }
+  }
+}
