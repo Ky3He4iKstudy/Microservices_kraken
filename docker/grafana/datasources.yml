@@ -9,6 +9,6 @@ datasources:
      type: 'influxdb'
      url: 'http://influxdb:8086'
      version: 1
-     user: krakend-dev
-     password: pas5w0rd
+     user: krakend
+     password: krakend
      database: krakend

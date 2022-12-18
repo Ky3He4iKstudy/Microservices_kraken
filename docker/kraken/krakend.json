@@ -5,10 +5,12 @@
     {
       "endpoint": "/info/",
       "method": "GET",
+      "output_encoding": "no-op",
       "backend": [
         {
           "url_pattern": "/",
           "method": "GET",
+          "encoding": "no-op",
           "host": [
             "http://server2:8080"
           ]
@@ -18,10 +20,12 @@
     {
       "endpoint": "/info/api",
       "method": "GET",
+      "output_encoding": "no-op",
       "backend": [
         {
           "url_pattern": "/api",
           "method": "GET",
+          "encoding": "no-op",
           "host": [
             "http://server2:8080"
           ]
@@ -31,10 +35,12 @@
     {
       "endpoint": "/info/health",
       "method": "GET",
+      "output_encoding": "no-op",
       "backend": [
         {
           "url_pattern": "/health",
           "method": "GET",
+          "encoding": "no-op",
           "host": [
             "http://server2:8080"
           ]
@@ -45,84 +51,90 @@
     {
       "endpoint": "/store/get_data",
       "method": "GET",
+      "output_encoding": "no-op",
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://keycloak:8080/auth/realms/master/protocol/openid-connect/certs",
+          "disable_jwk_security": true
+        }
+      },
       "backend": [
         {
           "url_pattern": "/get_data",
           "method": "GET",
+          "encoding": "no-op",
           "host": [
             "http://server1:8080"
           ]
         }
-      ],
-      "extra_config": {
-        "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://keycloak:8080/realms/myrealm/protocol/openid-connect/certs",
-          "disable_jwk_security": true
-        }
-      }
+      ]
     },
     {
       "endpoint": "/store/get/{key}",
       "method": "GET",
+      "output_encoding": "no-op",
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://keycloak:8080/auth/realms/master/protocol/openid-connect/certs",
+          "disable_jwk_security": true
+        }
+      },
       "backend": [
         {
           "url_pattern": "/get/{key}",
           "method": "GET",
+          "encoding": "no-op",
           "host": [
             "http://server1:8080"
           ]
         }
-      ],
-      "extra_config": {
-        "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://keycloak:8080/realms/myrealm/protocol/openid-connect/certs",
-          "disable_jwk_security": true
-        }
-      }
+      ]
     },
     {
       "endpoint": "/store/set",
       "method": "POST",
+      "output_encoding": "no-op",
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://keycloak:8080/auth/realms/master/protocol/openid-connect/certs",
+          "disable_jwk_security": true
+        }
+      },
       "backend": [
         {
-          "url_pattern": "/store/set",
+          "url_pattern": "/set",
           "method": "POST",
+          "encoding": "no-op",
           "host": [
             "http://server1:8080"
           ]
         }
-      ],
-      "extra_config": {
-        "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://keycloak:8080/realms/myrealm/protocol/openid-connect/certs",
-          "disable_jwk_security": true
-        }
-      }
+      ]
     },
     {
       "endpoint": "/store/remove",
       "method": "POST",
-      "output_encoding": "string",
+      "output_encoding": "no-op",
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://keycloak:8080/auth/realms/master/protocol/openid-connect/certs",
+          "disable_jwk_security": true
+        }
+      },
       "backend": [
         {
-          "url_pattern": "/store/remove",
+          "url_pattern": "/remove",
           "method": "POST",
-          "encoding": "string",
+          "encoding": "no-op",
           "host": [
             "http://server1:8080"
           ]
         }
-      ],
-      "extra_config": {
-        "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://keycloak:8080/realms/myrealm/protocol/openid-connect/certs",
-          "disable_jwk_security": true
-        }
-      }
+      ]
     },
     {
       "endpoint": "/common/health",
@@ -158,11 +170,13 @@
     {
       "endpoint": "/auth",
       "method": "POST",
-      "output_encoding": "json",
+      "output_encoding": "no-op",
       "backend": [
         {
-          "url_pattern": "/auth/realms/myrealm/protocol/openid-connect/token",
+
+          "url_pattern": "auth/realms/master/protocol/openid-connect/auth",
           "method": "POST",
+          "encoding": "no-op",
           "host": [
             "http://keycloak:8080"
           ],

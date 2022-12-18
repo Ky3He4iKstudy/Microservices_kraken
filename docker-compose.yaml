@@ -6,6 +6,8 @@ services:
     build:
       context: .
       dockerfile: ./server1/Dockerfile
+    depends_on:
+      - postgres-server
     ports:
       - "8081:8080"
     healthcheck:
@@ -101,6 +103,10 @@ services:
       - keycloak-db
     ports:
       - "8079:8080"
+    ulimits:
+      nofile:
+        soft: 20000
+        hard: 40000
     environment:
       DB_VENDOR: POSTGRES
       DB_ADDR: keycloak-db
