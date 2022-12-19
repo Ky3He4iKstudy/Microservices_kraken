@@ -2,7 +2,7 @@ version: "3.9"
 services:
   # microservices
   server1:
-    image: ky3he4ik/server-private
+    image: ky3he4ik/servic-private
 #    build:
 #      context: .
 #      dockerfile: ./server1/Dockerfile
@@ -17,7 +17,7 @@ services:
       start_period: 20s
       timeout: 10s
   server2:
-    image: ky3he4ik/server-public
+    image: ky3he4ik/servic-public
 #    build:
 #      context: .
 #      dockerfile: ./server2/Dockerfile
