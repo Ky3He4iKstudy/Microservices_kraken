@@ -2,10 +2,10 @@ version: "3.9"
 services:
   # microservices
   server1:
-    image: pract9_1
-    build:
-      context: .
-      dockerfile: ./server1/Dockerfile
+    image: ky3he4ik/server-private
+#    build:
+#      context: .
+#      dockerfile: ./server1/Dockerfile
     depends_on:
       - postgres-server
     ports:
@@ -17,10 +17,10 @@ services:
       start_period: 20s
       timeout: 10s
   server2:
-    image: pract9_2
-    build:
-      context: .
-      dockerfile: ./server2/Dockerfile
+    image: ky3he4ik/server-public
+#    build:
+#      context: .
+#      dockerfile: ./server2/Dockerfile
     ports:
       - "8082:8080"
     healthcheck:
